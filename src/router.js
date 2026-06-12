@@ -1,6 +1,7 @@
 import SignIn from '@/components/auth/SignIn.vue';
 import SignUp from '@/components/auth/SignUp.vue';
 import SignOut from '@/components/auth/SignOut.vue';
+import Profile from '@/components/auth/Profile.vue';
 import Dashboard from '@/components/pages/Dashboard.vue';
 
 import Navbar from '@/components/includes/Navbar.vue';
@@ -24,11 +25,22 @@ const routes = [
     },
     {
         path: '/signout',
-    name: 'SignOut',
-    component: SignOut,
+        name: 'SignOut',
+        component: SignOut,
         // This route has no guarded meta because it use for both authenticated and unauthenticated users.
         // The authentication state will be handled in the SignOut component.
-   },
+    },
+    {
+        path: '/profile',
+        name: 'Profile',
+        components: {
+            navbar: Navbar,
+            sidebar: Sidebar,
+            footer: Footer,
+            default: Profile,
+        },
+        meta: { guarded: true },
+    },
     {
         path: '/dashboard',
         name: 'Dashboard',
