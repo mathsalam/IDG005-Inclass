@@ -27,6 +27,7 @@
       </div>
     </div>
   </div>
+  <StudentModal ref="StudentModalRef" />
 </template>
 
 <script setup>
@@ -35,6 +36,9 @@ import { apiGetStudentsWithDetails } from '@/functions/api/student';
 import { CloseModal, LoadingModal, MessageModal } from "@/functions/swal";
 import CustomTable from '@/components/includes/controls/CustomTable.vue';
 import emptyImage from '@/assets/images/emptyImage.png';
+import StudentModal from '@/components/includes/modals/StudentModal.vue';
+
+const StudentModalRef = ref(null);
 
 const students = ref([]);
 const columns = [
@@ -87,7 +91,7 @@ const columns = [
       'Actions',
       h('button',
         {
-          onClick: () => { },
+          onClick: () => StudentModalRef.value.showModal(),
           class: 'btn btn-sm btn-success ml-3'
         },
         'Register New'
@@ -96,6 +100,7 @@ const columns = [
     cell: ({
       row
     }) => [
+        // delete btn
         h('button',
           {
             onClick: () => { },
@@ -103,6 +108,7 @@ const columns = [
           },
           h('i', { class: 'fa fa-trash' })
         ),
+        // view btn
         h('button',
           {
             onClick: () => { },
